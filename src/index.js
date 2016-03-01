@@ -12,8 +12,8 @@ class App extends Component {
     super(props);
 
     this.state = { videos: [] };
-
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+// Below is a default search of trail blazers which is temporary
+    YTSearch({key: API_KEY, term: 'trail blazers'}, (videos) => {
       this.setState({ videos });
     });
   }
