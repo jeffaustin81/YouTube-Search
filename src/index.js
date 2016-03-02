@@ -15,18 +15,23 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
-// Below is a default search of trail blazers which is temporary
-    YTSearch({key: API_KEY, term: 'trail blazers'}, (videos) => {
+// Default search to provide initial content
+    this.videoSearch('trail blazers');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
       });
     });
   }
+
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
